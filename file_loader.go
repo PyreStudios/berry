@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"io/fs"
+	"os"
 	"path/filepath"
 	"strings"
 )
@@ -20,7 +21,7 @@ type Media struct {
 	Path           string
 	Extension      string
 	MediaType      MediaType
-	CoverImagePath *string
+	CoverImagePath string
 }
 
 func LoadMediaFilesFromPath(rootPath string) []Media {
@@ -45,10 +46,16 @@ func LoadMediaFilesFromPath(rootPath string) []Media {
 			mediaType = MediaTypeComic
 		}
 
+		var coverImagePath string = pathWithExt[0] + "_cover.jpg"
+		if _, err := os.Stat(coverImagePath); err == nil {
+			coverImagePath = ""
+		}
+
 		files = append(files, Media{
-			Path:      path,
-			Extension: pathWithExt[len(pathWithExt)-1],
-			MediaType: MediaType(mediaType),
+			Path:           path,
+			Extension:      pathWithExt[len(pathWithExt)-1],
+			MediaType:      MediaType(mediaType),
+			CoverImagePath: coverImagePath,
 		})
 		return nil
 	})
