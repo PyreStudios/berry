@@ -11,7 +11,7 @@ TODO: Add installation instructions for Berry, ideally including Docker, native 
 A configuration file is used by Berry to help kickstart your media server and manage it's configuration. The configuration file is written in Yaml and you'll want to give your server a name and specify a list of "media_roots". These are root folders that you can store your media. Each root should follow the following structure (let's assume my "M" drive is my media root):
 
 TODO: Does this structure make sense?
-
+```
 M:
 | > comics
 | | > Marvel (this is a publisher)
@@ -24,3 +24,4 @@ M:
 | | | > The Portrait of a Lady (this is a book)
 | | | | > portrait.epub (whatever the name of the file is)
 | | | | > portrait_cover.jpg (the cover image for this book)
+```
